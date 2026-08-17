@@ -40,7 +40,7 @@ export default function Contact() {
               animate={{ opacity: 1, y: 0 }}
               className="border border-line bg-smoke p-8 self-start"
             >
-              <p className="tc text-signal mb-3">MESSAGE LOGGED</p>
+              <p className="tc !text-signal mb-3">MESSAGE LOGGED</p>
               <p className="text-mute">
                 Thanks — I read everything myself and reply within two days.
               </p>

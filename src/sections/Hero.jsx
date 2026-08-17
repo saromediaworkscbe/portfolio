@@ -38,7 +38,7 @@ export default function Hero() {
           <div>
             <h1 className="m-0">
               <span className="block overflow-hidden">
-                <span className="hero-line display-wide block text-[clamp(2.6rem,15cqw,5.5rem)] leading-[0.9]">
+                <span className="hero-line display-wide block text-[clamp(2.4rem,15cqw,5.5rem)] leading-[0.9]">
                   {SITE.name}
                 </span>
               </span>
@@ -75,9 +75,9 @@ export default function Hero() {
             alt="A classical dancer caught mid-gesture at golden hour, on location in the hills."
             loading="eager"
           />
-          <span className="absolute top-20 right-4 md:top-24 md:right-6 tc bg-ink/70 px-2 py-1">
+          {/* <span className="absolute top-20 right-4 md:top-24 md:right-6 tc bg-ink/70 px-2 py-1">
             On location
-          </span>
+          </span> */}
         </div>
       </div>
 

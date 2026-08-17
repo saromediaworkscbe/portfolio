@@ -76,7 +76,7 @@ export default function Skills() {
           {groups.map((group) => (
             <div key={group.dept} data-reveal>
               <div className="flex items-center gap-3 mb-5">
-                <p className="tc text-signal shrink-0">{group.dept}</p>
+                <p className="tc !text-signal shrink-0">{group.dept}</p>
                 <div className="sprocket flex-1" />
               </div>
 

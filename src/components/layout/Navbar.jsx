@@ -24,19 +24,26 @@ export default function Navbar() {
   }, []);
 
   const scrollTo = (id) => {
+    // If the mobile menu is open, its collapse animation shifts the page
+    // layout underneath an in-progress smooth scroll and cancels it — so
+    // wait for the collapse (300ms, matches the AnimatePresence transition)
+    // before scrolling.
+    const delay = open ? 300 : 0;
     setOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    window.setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    }, delay);
   };
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 mix-blend-difference">
-      <nav className="flex items-center justify-between px-5 md:px-10 h-16">
+    <header className="fixed top-0 inset-x-0 z-50">
+      <nav className="flex items-center justify-between px-5 md:px-10 h-16 mix-blend-difference">
         <button onClick={() => scrollTo("home")} className="flex items-center gap-3">
           {/* <span className="relative flex h-2.5 w-2.5">
             <span className="absolute inline-flex h-full w-full rounded-full bg-rec opacity-75 animate-ping" />
             <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-rec" />
           </span> */}
-          <span className="display-narrow text-sm tracking-widest2 text-bone">
+          <span className="display-narrow text-sm  text-bone">
             {SITE.name}
           </span>
         </button>
@@ -48,7 +55,7 @@ export default function Navbar() {
               <button
                 onClick={() => scrollTo(link.id)}
                 className={`tc transition-colors hover:text-bone ${
-                  active === link.id ? "text-signal" : "text-mute"
+                  active === link.id ? "!text-signal" : "!text-mute"
                 }`}
               >
                 {link.label}
@@ -60,7 +67,7 @@ export default function Navbar() {
         {/* Mobile toggle */}
         <button
           onClick={() => setOpen(!open)}
-          className="md:hidden tc text-bone"
+          className="md:hidden tc !text-bone"
           aria-expanded={open}
           aria-label="Toggle menu"
         >
