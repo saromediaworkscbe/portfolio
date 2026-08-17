@@ -1,0 +1,97 @@
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { NAV_LINKS, SITE } from "@/lib/constants";
+
+gsap.registerPlugin(ScrollTrigger);
+
+export default function Navbar() {
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("home");
+
+  // Highlight the nav item for whichever section is on screen
+  useEffect(() => {
+    const triggers = NAV_LINKS.map((link) =>
+      ScrollTrigger.create({
+        trigger: `#${link.id}`,
+        start: "top center",
+        end: "bottom center",
+        onToggle: (self) => self.isActive && setActive(link.id),
+      })
+    );
+    return () => triggers.forEach((t) => t.kill());
+  }, []);
+
+  const scrollTo = (id) => {
+    setOpen(false);
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  return (
+    <header className="fixed top-0 inset-x-0 z-50 mix-blend-difference">
+      <nav className="flex items-center justify-between px-5 md:px-10 h-16">
+        <button onClick={() => scrollTo("home")} className="flex items-center gap-3">
+          {/* <span className="relative flex h-2.5 w-2.5">
+            <span className="absolute inline-flex h-full w-full rounded-full bg-rec opacity-75 animate-ping" />
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-rec" />
+          </span> */}
+          <span className="display-narrow text-sm tracking-widest2 text-bone">
+            {SITE.name}
+          </span>
+        </button>
+
+        {/* Desktop */}
+        <ul className="hidden md:flex items-center gap-8">
+          {NAV_LINKS.map((link) => (
+            <li key={link.id}>
+              <button
+                onClick={() => scrollTo(link.id)}
+                className={`tc transition-colors hover:text-bone ${
+                  active === link.id ? "text-signal" : "text-mute"
+                }`}
+              >
+                {link.label}
+              </button>
+            </li>
+          ))}
+        </ul>
+
+        {/* Mobile toggle */}
+        <button
+          onClick={() => setOpen(!open)}
+          className="md:hidden tc text-bone"
+          aria-expanded={open}
+          aria-label="Toggle menu"
+        >
+          {open ? "Close" : "Menu"}
+        </button>
+      </nav>
+
+      <AnimatePresence>
+        {open && (
+          <motion.ul
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="md:hidden overflow-hidden bg-ink/95 backdrop-blur border-b border-line"
+          >
+            {NAV_LINKS.map((link) => (
+              <li key={link.id} className="border-t border-line">
+                <button
+                  onClick={() => scrollTo(link.id)}
+                  className={`block w-full text-left px-5 py-4 display-narrow text-2xl ${
+                    active === link.id ? "text-signal" : "text-bone"
+                  }`}
+                >
+                  {link.label}
+                </button>
+              </li>
+            ))}
+          </motion.ul>
+        )}
+      </AnimatePresence>
+    </header>
+  );
+}

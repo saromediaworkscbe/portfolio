@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=JetBrains+Mono:wght@400;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-ink text-bone font-body antialiased;
+}
+
+/* Wide, pressure-set display type — the poster voice of the site */
+.display-wide {
+  @apply font-display font-extrabold uppercase leading-[0.9] tracking-tight;
+}
+
+.display-narrow {
+  @apply font-display font-bold uppercase leading-none;
+}
+
+/* Timecode / slate labels */
+.tc {
+  @apply font-mono text-[11px] uppercase tracking-widest2 text-mute;
+}
+
+/* Hide scrollbars on horizontally-dragged filmstrips while keeping them scrollable */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hairline rules that read like film sprockets when dashed */
+.sprocket {
+  background-image: repeating-linear-gradient(
+    to right,
+    theme("colors.line") 0 14px,
+    transparent 14px 22px
+  );
+  height: 1px;
+}
+
+::selection {
+  background: #e8b44a;
+  color: #0b0c0e;
+}
+
+/* Keyboard focus without mouse-focus noise */
+:focus-visible {
+  outline: 2px solid theme("colors.signal");
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
