@@ -56,12 +56,12 @@ export default function Skills() {
       <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 max-w-6xl mx-auto min-w-0">
         {/* ---- Render preview + stats ---- */}
         <div className="lg:col-span-4 min-w-0">
-          <div data-reveal className="relative aspect-square border border-line bg-ink mb-10">
+          {/* <div data-reveal className="relative aspect-square border border-line bg-ink mb-10">
             <SkillsScene />
             <p className="tc absolute bottom-3 left-3">Render preview</p>
-          </div>
+          </div> */}
 
-          <div data-reveal className="border-t border-line pt-6 space-y-3">
+          <div data-reveal className=" border-line pt-6 space-y-3">
             {stats.map((s) => (
               <div key={s.label} className="flex items-baseline justify-between gap-4">
                 <p className="tc">{s.label}</p>
@@ -77,7 +77,7 @@ export default function Skills() {
             <div key={group.dept} data-reveal>
               <div className="flex items-center gap-3 mb-5">
                 <p className="tc !text-signal shrink-0">{group.dept}</p>
-                <div className="sprocket flex-1" />
+                {/* <div className="sprocket flex-1" /> */}
               </div>
 
               <div className="space-y-6">
