@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -9,9 +10,14 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("home");
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isHome = location.pathname === "/";
 
-  // Highlight the nav item for whichever section is on screen
+  // Highlight the nav item for whichever section is on screen — only
+  // meaningful on the one-page home route, where these sections exist.
   useEffect(() => {
+    if (!isHome) return;
     const triggers = NAV_LINKS.map((link) =>
       ScrollTrigger.create({
         trigger: `#${link.id}`,
@@ -21,7 +27,7 @@ export default function Navbar() {
       })
     );
     return () => triggers.forEach((t) => t.kill());
-  }, []);
+  }, [isHome]);
 
   const scrollTo = (id) => {
     // If the mobile menu is open, its collapse animation shifts the page
@@ -31,7 +37,16 @@ export default function Navbar() {
     const delay = open ? 300 : 0;
     setOpen(false);
     window.setTimeout(() => {
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      if (!isHome) {
+        // Sections only exist on the home route — navigate back first,
+        // then scroll once the home page has mounted.
+        navigate("/");
+        window.setTimeout(() => {
+          document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+        }, 60);
+      } else {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      }
     }, delay);
   };
 
@@ -49,13 +64,13 @@ export default function Navbar() {
         </button>
 
         {/* Desktop */}
-        <ul className="hidden md:flex items-center gap-8">
+        <ul className="hidden lg:flex items-center gap-8">
           {NAV_LINKS.map((link) => (
             <li key={link.id}>
               <button
                 onClick={() => scrollTo(link.id)}
                 className={`tc transition-colors hover:text-bone ${
-                  active === link.id ? "!text-signal" : "!text-mute"
+                  isHome && active === link.id ? "!text-signal" : "!text-mute"
                 }`}
               >
                 {link.label}
@@ -67,7 +82,7 @@ export default function Navbar() {
         {/* Mobile toggle */}
         <button
           onClick={() => setOpen(!open)}
-          className="md:hidden tc !text-bone"
+          className="lg:hidden tc !text-bone"
           aria-expanded={open}
           aria-label="Toggle menu"
         >
@@ -82,14 +97,14 @@ export default function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="md:hidden overflow-hidden bg-ink/95 backdrop-blur border-b border-line"
+            className="lg:hidden overflow-hidden bg-ink/95 backdrop-blur border-b border-line"
           >
             {NAV_LINKS.map((link) => (
               <li key={link.id} className="border-t border-line">
                 <button
                   onClick={() => scrollTo(link.id)}
                   className={`block w-full text-left px-5 py-4 display-narrow text-2xl ${
-                    active === link.id ? "text-signal" : "text-bone"
+                    isHome && active === link.id ? "text-signal" : "text-bone"
                   }`}
                 >
                   {link.label}

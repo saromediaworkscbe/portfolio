@@ -3,16 +3,18 @@ import { useGsapReveal } from "@/hooks/useGsapReveal";
 import { projects } from "@/data/projects";
 
 const beats = [
-  { tc: "00:00", label: "2019", text: "First short film shot on a borrowed DSLR and two clamp lights." },
-  { tc: "02:14", label: "2021", text: "Joined a Chennai production house as camera assistant, then operator." },
-  { tc: "05:40", label: "2023", text: "Went independent. First documentary selected for a regional festival." },
-  { tc: "09:03", label: "2026", text: "Now directing and shooting for brands, artists and NGOs across South India." },
+  { tc: "THE BEGINNING", label: "2019", text: "Started my professional journey in visual media, developing experience across graphic design, photography, videography and creative production." },
+  { tc: "PROCESS", label: "2019 – 2021", text: "Worked across various companies and events in photography, branding, and visual content creation." },
+  { tc: "JOINED KPRIET", label: "2021 - present", text: "Joined KPR Institute of Engineering and Technology as a Visual media Specialist and expanded my role into photography, videography, video editing, branding and institutional media production." },
+  // { tc: "09:03", label: "2026", text: "Now directing and shooting for brands, artists and NGOs across South India." },
 ];
 
 const stats = [
-  { value: `${new Date().getFullYear() - 2019}+`, label: "Years shooting" },
-  { value: String(projects.length).padStart(2, "0"), label: "Productions" },
-  { value: String(beats.length).padStart(2, "0"), label: "Chapters" },
+  { value: `${new Date().getFullYear() - 2018}+`, label: "Years Experience" },
+  // { value: String(projects.length).padStart(2, "0"), label: "Years at KPRIET" },
+   { value: "5+", label: "Years at KPRIET" },
+  // { value: String(beats.length).padStart(2, "0"), label: "Chapters" },
+  { value: "5", label: "Core Disciplines" },
 ];
 
 export default function About() {
@@ -48,9 +50,7 @@ export default function About() {
         {/* ---- Bio, stats, career reel ---- */}
         <div className="flex flex-col min-w-0">
           <p data-reveal className="text-mute leading-relaxed mb-10">
-            No studio can fake the way monsoon light falls through a tea
-            estate at 6 a.m. — so I go there, wait for it, and build the
-            story around what the place gives me.
+            I create visual stories that connect people, brands and experiences through photography, videography, video editing and graphic design. From capturing important moments to building complete visual campaigns, I turn ideas into engaging and purposeful content.
           </p>
 
           <div data-reveal className="grid grid-cols-3 gap-x-3 border-t border-line pt-6 mb-14">
@@ -67,11 +67,11 @@ export default function About() {
             <p className="tc mb-3">Career reel</p>
             <div className="sprocket mb-3" />
 
-            <div className="no-scrollbar flex gap-4 overflow-x-auto snap-x snap-mandatory pb-1">
+            <div className="no-scrollbar flex gap-4 overflow-x-auto snap-x snap-mandatory pb-1 lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0">
               {beats.map((beat, i) => (
                 <div
                   key={beat.tc}
-                  className="group snap-start shrink-0 w-64 border border-line bg-smoke p-5 hover:border-signal/60 transition-colors"
+                  className="group snap-start shrink-0 w-64 lg:w-full border border-line bg-smoke p-5 hover:border-signal/60 transition-colors"
                 >
                   <p className="font-mono text-[10px] text-mute tabular-nums mb-3">
                     {String(i + 1).padStart(2, "0")}/{String(beats.length).padStart(2, "0")} —{" "}
@@ -80,7 +80,7 @@ export default function About() {
                   <p className="display-narrow text-xl mb-1 group-hover:text-signal transition-colors">
                     {beat.label}
                   </p>
-                  <p className="text-sm text-mute leading-relaxed">{beat.text}</p>
+                  <p className="text-[12px] text-mute leading-relaxed">{beat.text}</p>
                 </div>
               ))}
             </div>

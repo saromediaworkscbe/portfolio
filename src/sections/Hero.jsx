@@ -38,13 +38,13 @@ export default function Hero() {
           <div>
             <h1 className="m-0">
               <span className="block overflow-hidden">
-                <span className="hero-line display-wide block text-[clamp(2.4rem,15cqw,5.5rem)] leading-[0.9]">
+                <span className="hero-line display-wide block text-[clamp(2rem,14cqw,5.5rem)] leading-[1]">
                   {SITE.name}
                 </span>
               </span>
             </h1>
-            <span className="block overflow-hidden mt-2">
-              <span className="hero-line display-narrow block text-mute text-[clamp(1.1rem,5.5cqw,1.75rem)]">
+            <span className="block overflow-hidden mt-4">
+              <span className="hero-line display-narrow block text-mute text-[clamp(1rem,4cqw,1.75rem)]">
                 {SITE.tagline}
               </span>
             </span>
@@ -81,7 +81,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="relative z-10 inset-x-5 md:inset-x-10 sprocket" />
+      <div className="relative z-10 mx-5 md:mx-10 sprocket" />
     </section>
   );
 }

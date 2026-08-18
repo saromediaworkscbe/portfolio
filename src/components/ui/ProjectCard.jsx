@@ -1,9 +1,14 @@
+import { Link } from "react-router-dom";
+
 export default function ProjectCard({ project }) {
   return (
-    <article className="project-card group relative border border-line bg-smoke overflow-hidden">
+    <Link
+      to={`/projects/${project.id}`}
+      className="project-card group relative block border border-line bg-smoke overflow-hidden"
+    >
       <div className="relative aspect-video overflow-hidden">
         <img
-          src={project.cover}
+          src={project.images[0]}
           alt={project.title}
           loading="lazy"
           className="h-full w-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
@@ -14,6 +19,11 @@ export default function ProjectCard({ project }) {
         <span className="absolute top-3 right-3 font-mono text-xs text-signal bg-ink/80 px-2 py-1">
           {project.year}
         </span>
+        {project.images.length > 1 && (
+          <span className="absolute bottom-3 right-3 font-mono text-[10px] text-bone bg-ink/80 px-2 py-1">
+            +{project.images.length - 1} more
+          </span>
+        )}
       </div>
 
       <div className="p-5 md:p-6">
@@ -35,6 +45,6 @@ export default function ProjectCard({ project }) {
           ))}
         </ul>
       </div>
-    </article>
+    </Link>
   );
 }
