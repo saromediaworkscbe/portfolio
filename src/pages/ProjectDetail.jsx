@@ -1,14 +1,27 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { projects } from "@/data/projects";
 
 export default function ProjectDetail() {
   const { id } = useParams();
   const project = projects.find((p) => p.id === id);
+  const [active, setActive] = useState(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setActive(null);
   }, [id]);
+
+  useEffect(() => {
+    if (active === null) return;
+    document.body.style.overflow = "hidden";
+    const onKey = (e) => e.key === "Escape" && setActive(null);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [active]);
 
   if (!project) {
     return (
@@ -60,30 +73,22 @@ export default function ProjectDetail() {
           {project.description}
         </p>
 
-        {/* ---- Collage gallery for this project ---- */}
-        <div
-          className="grid grid-cols-2 gap-2 md:gap-3 p-2 md:p-3 auto-rows-[240px] sm:auto-rows-[320px] md:auto-rows-[380px] mb-24"
-        >
+        {/* ---- Every image for this project, fully visible ---- */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-24">
           {project.images.map((src, i) => (
-            <div
+            <button
               key={src}
-              className={`group relative overflow-hidden ${
-                project.images.length === 1
-                  ? "col-span-2 row-span-2"
-                  : project.images.length === 2
-                  ? "row-span-2"
-                  : i === 0
-                  ? "row-span-2"
-                  : "row-span-1"
-              }`}
+              onClick={() => setActive(i)}
+              aria-label={`Open frame ${i + 1} of ${project.images.length}`}
+              className="group relative aspect-[4/3] overflow-hidden border border-line focus:outline-none focus-visible:ring-2 focus-visible:ring-signal"
             >
               <img
                 src={src}
                 alt={`${project.title} — frame ${i + 1}`}
                 loading={i === 0 ? "eager" : "lazy"}
-                className="h-full w-full object-cover grayscale brightness-[0.75] transition-all duration-500 ease-out group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-105"
+                className="h-full w-full object-cover grayscale brightness-[0.85] transition-all duration-500 ease-out group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-105 group-focus:grayscale-0 group-focus:brightness-100"
               />
-            </div>
+            </button>
           ))}
         </div>
 
@@ -103,6 +108,66 @@ export default function ProjectDetail() {
           </div>
         </div>
       </div>
+
+      {active !== null && (
+        <div
+          className="fixed inset-0 z-[60] flex items-center justify-center px-6 md:px-16 bg-ink/85 backdrop-blur-sm"
+          onClick={() => setActive(null)}
+        >
+          <button
+            aria-label="Close overlay"
+            onClick={() => setActive(null)}
+            className="absolute top-5 right-5 md:top-8 md:right-8 text-bone/70 hover:text-signal transition-colors"
+          >
+            <svg viewBox="-50 -50 100 100" width="32" height="32">
+              <g fill="none" stroke="currentColor" strokeWidth="20" strokeLinecap="round">
+                <path transform="rotate(45)" d="M -40 0 h 80 m -40 -40 v 80" />
+              </g>
+            </svg>
+          </button>
+
+          {project.images.length > 1 && (
+            <>
+              <button
+                aria-label="Previous frame"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActive((active - 1 + project.images.length) % project.images.length);
+                }}
+                className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 text-bone/70 hover:text-signal transition-colors p-3"
+              >
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.6">
+                  <path d="M15 19 8 12l7-7" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+              <button
+                aria-label="Next frame"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActive((active + 1) % project.images.length);
+                }}
+                className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 text-bone/70 hover:text-signal transition-colors p-3"
+              >
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.6">
+                  <path d="m9 5 7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            </>
+          )}
+
+          <img
+            src={project.images[active]}
+            alt={`${project.title} — frame ${active + 1}`}
+            onClick={(e) => e.stopPropagation()}
+            className="max-h-[85vh] max-w-full object-contain border border-line"
+          />
+
+          <p className="tc absolute bottom-6 left-1/2 -translate-x-1/2">
+            <span className="text-signal">{String(active + 1).padStart(2, "0")}</span> /{" "}
+            {String(project.images.length).padStart(2, "0")}
+          </p>
+        </div>
+      )}
     </article>
   );
 }

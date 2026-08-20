@@ -2,37 +2,37 @@
 // first is the hero shot, any others show as a thumbnail stack beside it.
 export const projects = [
   {
-    id: "marriage",
+  id: "PHOTOGRAPHY",
     index: "SC 01",
-    title: "Marriage",
-    role: "Cinematography",
+   title: "PHOTOGRAPHY",
+    role: "Creative Photographer",
     year: "2026",
     tags: ["Commercial", "Handheld"],
     description:
-      "A wedding shoot",
-    images: ["/images/pro-1.jpeg", "/images/p-8.jpeg", "/images/p-9.jpeg"],
+      "Capturing authentic moments through cinematic composition, natural light, and refined storytelling, with a focus on commercial and lifestyle photography.",
+    images: ["/images/pro-3.jpeg", "/images/p-8.jpeg", "/images/p-9.jpeg","/images/p-3.jpeg","/images/ph-2.jpg","/images/ph-3.jpg"],
   },
   {
-    id: "motorcycle",
+    id: "CINEMATOGRAPHY",
     index: "SC 02",
-    title: "Motorcycle",
-    role: "Cinematography",
+    title: "CINEMATOGRAPHY",
+    role: "Cinematographer",
     year: "2026",
     tags: ["Commercial", "Handheld"],
     description:
-      "A motorcycle shoot",
-    images: ["/images/pro-3.jpeg", "/images/p-5.jpeg"],
+      "Capturing authentic moments through cinematic composition, natural light, and refined storytelling, with a focus on commercial and lifestyle cinematography.",
+    images: ["/images/project-2.png", "/images/pro-1.jpeg","/images/pro-4.jpeg","/images/p-8.jpeg","/images/ph-4.jpg","/images/ch-1.jpg","/images/ch-2.jpg"],
   },
   {
-    id: "car",
+    id: "GRAPHIC DESIGN",
     index: "SC 03",
-    title: "Car shoot",
-    role: "Cinematography",
+    title: "GRAPHIC DESIGN",
+    role: "GRAPHIC DESIGNER",
     year: "2025",
     tags: ["Commercial", "Handheld"],
     description:
-      "Car shoot",
-    images: ["/images/pro-2.jpeg"],
+      "Capturing authentic moments through cinematic composition, natural light, and refined storytelling, with a focus on commercial and lifestyle graphic design.",
+    images: ["/images/project-3.jpg","/images/gd-1.jpg","/images/gd-2.jpg","/images/gd-3.jpg","/images/ph-6.jpg"],
   },
   {
     id: "shoot",
@@ -43,6 +43,6 @@ export const projects = [
     tags: ["Commercial", "Handheld"],
     description:
       "Shoot description",
-    images: ["/images/pro-4.jpeg"],
+    images: ["/images/pro-4.jpeg","/images/p-7.jpeg","/images/p-1.jpeg","/images/p-2.jpeg","/images/p-4.jpeg","/images/p-6.jpeg","/images/ph-1.jpg"],
   },
 ];

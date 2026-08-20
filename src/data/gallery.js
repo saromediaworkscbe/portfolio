@@ -36,4 +36,20 @@ export const gallery = [
     src: "/images/p-3.jpeg",
     alt: "Compositing the swoosh graphic for the Swoosh spec spot.",
   },
+  {
+    src: "/images/ph-6.jpg",
+    alt: "Compositing the swoosh graphic for the Swoosh spec spot.",
+  },
+  {
+    src: "/images/gd-2.jpg",
+    alt: "Compositing the swoosh graphic for the Swoosh spec spot.",
+  },
+    {
+    src: "/images/gd-3.jpg",
+    alt: "Compositing the swoosh graphic for the Swoosh spec spot.",
+  },
+     {
+    src: "/images/ph-2.jpg",
+    alt: "Compositing the swoosh graphic for the Swoosh spec spot.",
+  },
 ];

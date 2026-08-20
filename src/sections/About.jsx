@@ -33,7 +33,7 @@ export default function About() {
           className="group relative aspect-[4/5] lg:aspect-auto lg:h-full min-h-[420px] overflow-hidden border border-line"
         >
           <img
-            src="/images/p-8.jpeg"
+            src="/images/about2.jpeg"
             alt="A bride's reflection caught in a mirror, black and white."
             loading="lazy"
             className="h-full w-full object-cover grayscale brightness-[0.75] transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-105"

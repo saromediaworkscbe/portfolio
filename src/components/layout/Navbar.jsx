@@ -69,7 +69,7 @@ export default function Navbar() {
             <li key={link.id}>
               <button
                 onClick={() => scrollTo(link.id)}
-                className={`tc transition-colors hover:text-bone ${
+                className={`tc font-bold transition-colors hover:text-bone ${
                   isHome && active === link.id ? "!text-signal" : "!text-mute"
                 }`}
               >
@@ -103,7 +103,7 @@ export default function Navbar() {
               <li key={link.id} className="border-t border-line">
                 <button
                   onClick={() => scrollTo(link.id)}
-                  className={`block w-full text-left px-5 py-4 display-narrow text-2xl ${
+                  className={`block w-full text-left px-5 py-4 display-narrow text-md ${
                     isHome && active === link.id ? "text-signal" : "text-bone"
                   }`}
                 >

@@ -38,7 +38,7 @@ export default function Hero() {
           <div>
             <h1 className="m-0">
               <span className="block overflow-hidden">
-                <span className="hero-line display-wide block text-[clamp(2rem,14cqw,5.5rem)] leading-[1]">
+                <span className="hero-line display-wide block text-[clamp(1.5rem,12cqw,5.5rem)] leading-[1]">
                   {SITE.name}
                 </span>
               </span>
@@ -75,6 +75,9 @@ export default function Hero() {
             alt="A classical dancer caught mid-gesture at golden hour, on location in the hills."
             loading="eager"
           />
+          {/* Fade the photo's left edge into the text panel's ink background
+              instead of a hard seam between the two halves. */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-1/2 lg:w-1/3 bg-gradient-to-r from-ink to-transparent" />
           {/* <span className="absolute top-20 right-4 md:top-24 md:right-6 tc bg-ink/70 px-2 py-1">
             On location
           </span> */}

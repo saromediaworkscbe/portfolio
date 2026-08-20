@@ -1,7 +1,11 @@
 export const SITE = {
   name: "SARAVANAN E",
-  tagline: "Cinematography & Motion Design",
-  email: "hello@frameandfield.studio",
+  tagline: "Photography & Videography",
+  email: "saravanane496@gmail.com",
+  phone: "+91 99445 82749",
+  phoneHref: "+919944582749",
+  instagram: "https://www.instagram.com/saro_mediaworks/",
+  instagramHandle: "@saro_mediaworks",
   location: "Coimbatore, IN",
 };
 

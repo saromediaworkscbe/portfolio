@@ -30,6 +30,22 @@ export default function Contact() {
             <a href={`mailto:${SITE.email}`} className="font-mono text-signal hover:underline">
               {SITE.email}
             </a>
+
+            <p className="tc mt-8 mb-2">Call</p>
+            <a href={`tel:${SITE.phoneHref}`} className="font-mono text-signal hover:underline">
+              {SITE.phone}
+            </a>
+
+            <p className="tc mt-8 mb-2">Instagram</p>
+            <a
+              href={SITE.instagram}
+              target="_blank"
+              rel="noreferrer"
+              className="font-mono text-signal hover:underline"
+            >
+              {SITE.instagramHandle}
+            </a>
+
             <p className="tc mt-8 mb-2">Based in</p>
             <p className="text-mute">{SITE.location} — travels anywhere the light is good.</p>
           </div>
