@@ -22,7 +22,7 @@ export default function Contact() {
 
         <div className="grid md:grid-cols-2 gap-12">
           <div>
-            <p className="text-lg text-bone/90 leading-relaxed mb-8">
+            <p className="text-md text-bone/90 leading-relaxed mb-8">
               Booking for late 2026. Tell me about the film you want to make —
               location, length, and the feeling it should leave behind.
             </p>
